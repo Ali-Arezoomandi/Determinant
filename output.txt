@@ -1,0 +1,32 @@
+With Recursive:
+	Matrix:
+	[2, 3, 8, 3, 6]
+	[7, 4, 8, 3, 3]
+	[3, 1, 7, 5, 2]
+	[3, 2, 7, 8, 7]
+	[8, 9, 2, 7, 9]
+	Determinant: 3110.0
+	Delta time (ms): 3.2486
+
+With Gaussian:
+	Matrix:
+	[2, 3, 8, 3, 6]
+	[7, 4, 8, 3, 3]
+	[3, 1, 7, 5, 2]
+	[3, 2, 7, 8, 7]
+	[8, 9, 2, 7, 9]
+	Determinant: 3110.0000000000005
+	Delta time (ms): 0.359
+
+With LU:
+	Matrix:
+	[2, 3, 8, 3, 6]
+	[7, 4, 8, 3, 3]
+	[3, 1, 7, 5, 2]
+	[3, 2, 7, 8, 7]
+	[8, 9, 2, 7, 9]
+	Determinant: 3110.0
+	Delta time (ms): 0.4696
+
+Compare: 
+	Gaussian's time = 0.359  is faster than  Recursive's time = 3.2486
