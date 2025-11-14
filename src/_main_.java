@@ -1,4 +1,4 @@
-package Determinant;
+package Determinant.src;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -17,7 +17,7 @@ public class _main_ {
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                matrix[i][j] = min + rand.nextInt(max - min);
+                matrix[i][j] = rand.nextInt(max - min);
             }
         }
         return matrix;
@@ -57,10 +57,7 @@ public class _main_ {
         if(matrix.length != matrix[0].length){
             throw new IllegalArgumentException("Invalid input!");
         }
-        if(matrix.length == 1){
-            return matrix[0][0];
-        }
-
+        
         int count = convertUT(matrix);
 
         double sum = 1;
@@ -81,17 +78,17 @@ public class _main_ {
     public static int convertUT(double matrix[][]){
         int count = 0;
         for (int i = 0; i < matrix.length - 1; i++) {
-            if (matrix[i][i] == 0) {
-                for (int x = i + 1; x < matrix.length; x++) {  
+           if (matrix[i][i] == 0) {
+                for (int x = i + 1; x < matrix.length; x++) {
                     if (matrix[x][i] != 0) {
-                        double[] n = matrix[i];
-                        matrix[i] = matrix[x];
-                        matrix[x] = n;
-                        count ++;
+                        double[] n = matrix[x];
+                        matrix[x] = matrix[i];
+                        matrix[i] = n;
+                        count++;
                         break;
-                    } 
+                    }
                 }
-            } 
+           }
             double pivot = matrix[i][i];
             for (int j = i + 1; j < matrix.length; j++) { // row
                 double zarib = matrix[j][i] / pivot;
@@ -100,7 +97,7 @@ public class _main_ {
                 }
             }
             }
-            return count;
+            return count; 
         }
 
 
@@ -117,30 +114,32 @@ public class _main_ {
 
             for (int k = i; k < n; k++) {
                 double sum = 0;
-                for (int j = 0; j < i; j++)
+                for (int j = 0; j < i; j++){
                     sum += (L[i][j] * U[j][k]);
+                }
                 U[i][k] = matrix[i][k] - sum;
             }
 
             // Lower Triangular
 
             for (int k = i; k < n; k++) {
-                if (i == k)
-                    L[i][i] = 1; // Diagonal as 1
-                else {
+                if (i == k){
+                    L[i][i] = 1; 
+                } else {
                     double sum = 0;
-                    for (int j = 0; j < i; j++)
+                    for (int j = 0; j < i; j++){
                         sum += (L[k][j] * U[j][i]);
+                    }
                     L[k][i] = (matrix[k][i] - sum) / U[i][i];
                 }
             }
         }
 
-        // Determinant = product of diagonal elements of U
+        // Determinant 
 
         double detLU = 1.0;
         for (int i = 0; i < n; i++) {
-            detLU *= U[i][i];
+            detLU *= U[i][i] * L[i][i];
         }
 
         return detLU;
